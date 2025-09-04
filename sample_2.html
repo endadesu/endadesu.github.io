@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>調査依頼一覧</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      .page-title {
+        letter-spacing: 0.04em;
+      }
+      .table thead th {
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--bs-body-bg);
+      }
+      .table td,
+      .table th {
+        vertical-align: middle;
+      }
+      .btn-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .badge-entity {
+        font-weight: 600;
+      }
+      .badge-entity.FG {
+        background: #e7f1ff;
+        color: #0d6efd;
+      }
+      .badge-entity.BK {
+        background: #fef3e6;
+        color: #fd7e14;
+      }
+      .badge-entity.OTB {
+        background: #eaf7ef;
+        color: #198754;
+      }
+      .badge-entity.SC {
+        background: #f1e8ff;
+        color: #6f42c1;
+      }
+      .badge-entity.UNDECIDED {
+        background: #eef2f5;
+        color: #6c757d;
+      }
+      .progress-steps {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .progress-steps li {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        position: relative;
+        font-size: 0.9rem;
+        color: var(--bs-secondary-color);
+      }
+      .progress-steps li i {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--bs-secondary-border-subtle);
+        background: var(--bs-secondary-bg);
+      }
+      .progress-steps li.active {
+        color: var(--bs-body-color);
+      }
+      .progress-steps li.active i {
+        background: rgba(var(--bs-primary-rgb), 0.12);
+        border-color: rgba(var(--bs-primary-rgb), 0.45);
+        color: var(--bs-primary);
+      }
+      .progress-steps li::after {
+        content: "";
+        position: absolute;
+        right: -0.7rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.4rem;
+        height: 2px;
+        background: var(--bs-secondary-border-subtle);
+      }
+      .progress-steps li:last-child::after {
+        display: none;
+      }
+      .progress-steps li.active + li::after {
+        background: rgba(var(--bs-primary-rgb), 0.45);
+      }
+    </style>
+  </head>
+  <body class="bg-body-tertiary">
+    <main class="container py-4">
+      <!-- ヘッダー -->
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-table fs-3 me-2 text-primary"></i>
+          <h1 class="h4 page-title mb-0">調査依頼一覧</h1>
+        </div>
+        <a class="btn btn-primary"> <i class="bi bi-plus-lg"></i> 新規依頼 </a>
+      </div>
+
+      <!-- ツールバー -->
+      <form class="card border-0 shadow-sm mb-3" method="get">
+        <div class="card-body py-3">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-5">
+              <label class="form-label mb-1">調査対象者</label>
+              <input
+                class="form-control"
+                type="search"
+                name="q"
+                placeholder="氏名を検索"
+              />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label mb-1">エンティティ</label>
+              <select class="form-select" name="entity">
+                <option value="">すべて</option>
+                <option>FG</option>
+                <option>BK</option>
+                <option>OTB</option>
+                <option>SC</option>
+                <option>TB</option>
+                <option value="UNDECIDED">未定</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label mb-1">進捗状況</label>
+              <select class="form-select" name="priority">
+                <option value="">すべて</option>
+                <option value="NORMAL">受付</option>
+                <option value="NORMAL">調査中</option>
+                <option value="URGENT">完了</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-grid">
+              <button class="btn btn-outline-primary" type="submit">
+                <i class="bi bi-search"></i> 絞り込み
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- 一覧テーブル -->
+      <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-hover table-sm align-middle mb-0">
+            <thead>
+              <tr class="text-secondary">
+                <th>依頼No.</th>
+                <th>調査対象者</th>
+                <th class="text-center">エンティティ</th>
+                <th>調査進捗状況</th>
+                <th class="text-center">詳細</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- ダミーデータ行 -->
+              <tr>
+                <td>
+                  <a href="/requests/1001" class="link-primary fw-semibold"
+                    >1001</a
+                  >
+                </td>
+                <td>山田太郎</td>
+                <td class="text-center">
+                  <span class="badge-entity BK">BK</span>
+                </td>
+                <td>
+                  <ul class="progress-steps">
+                    <li class="active">
+                      <i class="bi bi-hourglass-split"></i><span>受付</span>
+                    </li>
+                    <li><i class="bi bi-activity"></i><span>調査中</span></li>
+                    <li>
+                      <i class="bi bi-check2-circle"></i><span>完了</span>
+                    </li>
+                  </ul>
+                </td>
+                <td class="text-center">
+                  <a
+                    class="btn btn-outline-primary btn-sm btn-icon"
+                    href="/requests/1001"
+                    ><i class="bi bi-box-arrow-up-right"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="/requests/1002" class="link-primary fw-semibold"
+                    >1002</a
+                  >
+                </td>
+                <td>佐藤花子</td>
+                <td class="text-center">
+                  <span class="badge-entity SC">SC</span>
+                </td>
+                <td>
+                  <ul class="progress-steps">
+                    <li class="active">
+                      <i class="bi bi-hourglass-split"></i><span>受付</span>
+                    </li>
+                    <li class="active">
+                      <i class="bi bi-activity"></i><span>調査中</span>
+                    </li>
+                    <li>
+                      <i class="bi bi-check2-circle"></i><span>完了</span>
+                    </li>
+                  </ul>
+                </td>
+                <td class="text-center">
+                  <a
+                    class="btn btn-outline-primary btn-sm btn-icon"
+                    href="/requests/1002"
+                    ><i class="bi bi-box-arrow-up-right"></i
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="/requests/1003" class="link-primary fw-semibold"
+                    >1003</a
+                  >
+                </td>
+                <td>鈴木一郎</td>
+                <td class="text-center">
+                  <span class="badge-entity FG">FG</span>
+                </td>
+                <td>
+                  <ul class="progress-steps">
+                    <li class="active">
+                      <i class="bi bi-hourglass-split"></i><span>受付</span>
+                    </li>
+                    <li class="active">
+                      <i class="bi bi-activity"></i><span>調査中</span>
+                    </li>
+                    <li class="active">
+                      <i class="bi bi-check2-circle"></i><span>完了</span>
+                    </li>
+                  </ul>
+                </td>
+                <td class="text-center">
+                  <a
+                    class="btn btn-outline-primary btn-sm btn-icon"
+                    href="/requests/1003"
+                    ><i class="bi bi-box-arrow-up-right"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
