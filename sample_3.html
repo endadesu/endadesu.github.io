@@ -209,22 +209,49 @@
                     <label class="form-label">依頼</label>
                     <div class="d-flex align-items-center gap-2">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" />
+                        <input
+                          id="requestCheckbox_1"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
                         <label class="form-check-label"></label>
                       </div>
-                      <input type="date" class="form-control" />
+                      <input
+                        id="requestDate_1"
+                        type="date"
+                        class="form-control"
+                      />
                     </div>
                   </div>
                   <div class="col-6">
                     <label class="form-label">完了</label>
                     <div class="d-flex align-items-center gap-2">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" />
+                        <input
+                          id="requestCheckbox_2"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
                         <label class="form-check-label"></label>
                       </div>
-                      <input type="date" class="form-control" />
+                      <input
+                        id="requestDate_2"
+                        type="date"
+                        class="form-control"
+                      />
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="section-title mb-2">備考</div>
+                <div class="row g-3">
+                  <textarea class="form-control" rows="5" cols="40"></textarea>
                 </div>
               </div>
             </div>
@@ -242,29 +269,63 @@
                     <label class="form-label">依頼</label>
                     <div class="d-flex align-items-center gap-2">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" />
+                        <input
+                          id="requestCheckbox_3"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
                       </div>
-                      <input type="date" class="form-control" />
+                      <input
+                        id="requestDate_3"
+                        type="date"
+                        class="form-control"
+                      />
                     </div>
                   </div>
                   <div class="col-12 col-md-4">
                     <label class="form-label">調査開始</label>
                     <div class="d-flex align-items-center gap-2">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" />
+                        <input
+                          id="requestCheckbox_4"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
                       </div>
-                      <input type="date" class="form-control" />
+                      <input
+                        id="requestDate_4"
+                        type="date"
+                        class="form-control"
+                      />
                     </div>
                   </div>
                   <div class="col-12 col-md-4">
                     <label class="form-label">完了</label>
                     <div class="d-flex align-items-center gap-2">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" />
+                        <input
+                          id="requestCheckbox_5"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
                       </div>
-                      <input type="date" class="form-control" />
+                      <input
+                        id="requestDate_5"
+                        type="date"
+                        class="form-control"
+                      />
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="section-title mb-2">備考</div>
+                <div class="row g-3">
+                  <textarea class="form-control" rows="5" cols="40"></textarea>
                 </div>
               </div>
             </div>
@@ -280,18 +341,36 @@
                 <div class="row g-3">
                   <div class="col-md-4">
                     <label class="form-label">開始</label>
-                    <input type="date" class="form-control" />
+                    <input
+                      id="requestDate_6"
+                      type="date"
+                      class="form-control"
+                    />
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">ご本人了承</label>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" />
+                      <input
+                        id="requestCheckbox_6"
+                        class="form-check-input"
+                        type="checkbox"
+                      />
                     </div>
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">完了</label>
                     <input type="date" class="form-control" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <div class="section-title mb-2">備考</div>
+                <div class="row g-3">
+                  <textarea class="form-control" rows="5" cols="40"></textarea>
                 </div>
               </div>
             </div>
@@ -317,9 +396,14 @@
                           <label class="form-label">依頼済み</label>
                           <div class="d-flex align-items-center gap-5">
                             <div class="form-check form-switch mb-0">
-                              <input class="form-check-input" type="checkbox" />
+                              <input
+                                id="requestCheckbox_7"
+                                class="form-check-input"
+                                type="checkbox"
+                              />
                             </div>
                             <input
+                              id="requestDate_7"
                               type="date"
                               class="form-control"
                               style="width: auto"
@@ -335,10 +419,13 @@
                   <table class="table table-sm align-middle">
                     <thead class="text-secondary">
                       <tr>
-                        <th style="width: 3rem">No</th>
-                        <th>回答者</th>
-                        <th style="width: 18rem">日付</th>
-                        <th style="width: 18rem">完了</th>
+                        <th style="width: 6rem">No</th>
+                        <th style="width: 12rem">回答者</th>
+                        <th style="width: 9rem">日付</th>
+                        <th style="width: 3rem">完了</th>
+                        <th style="width: 18rem">企業名</th>
+                        <th style="width: 6rem">人数</th>
+                        <th style="width: 21rem">備考</th>
                         <th style="width: 3rem"></th>
                       </tr>
                     </thead>
@@ -354,10 +441,27 @@
                         <td>
                           <div class="d-flex align-items-center gap-2">
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" />
+                              <input
+                                id="requestCheckbox_8"
+                                class="form-check-input"
+                                type="checkbox"
+                              />
                             </div>
-                            <input type="date" class="form-control" />
+                            <input
+                              id="requestDate_8"
+                              type="date"
+                              class="form-control"
+                            />
                           </div>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" />
+                        </td>
+                        <td>
+                          <input type="number" class="form-control" />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" />
                         </td>
                         <td class="text-end">
                           <button
@@ -396,13 +500,7 @@
                   <i class="bi bi-chat-left-text"></i> 個別連絡
                 </div>
                 <div class="row g-3">
-                  <div class="col-md-4">
-                    <label class="form-label">要否</label>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" />
-                    </div>
-                  </div>
-                  <div class="col-md-8">
+                  <div class="col-md-12">
                     <label class="form-label">メモ</label>
                     <input type="text" class="form-control" />
                   </div>
@@ -490,11 +588,18 @@
         <td>
           <div class="d-flex align-items-center gap-2">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" name="references[${i}].done">
+              <input id="requestCheckbox_${
+                i + 9
+              }" class="form-check-input" type="checkbox" name="references[${i}].done">
             </div>
-            <input type="date" class="form-control" name="references[${i}].doneAt">
+            <input id="requestDate_${
+              i + 9
+            }" type="date" class="form-control" name="references[${i}].doneAt">
           </div>
         </td>
+        <td><input type="text" class="form-control" name="references[${i}].company" /></td>
+        <td><input type="number" class="form-control" name="references[${i}].count" /></td>
+        <td><input type="text" class="form-control" name="references[${i}].remark" /></td>
         <td class="text-end">
           <button type="button" class="btn btn-outline-danger btn-sm remove-ref">
             <i class="bi bi-trash"></i>
@@ -502,6 +607,20 @@
         </td>
       `;
           body.appendChild(tr);
+          document
+            .getElementById("requestCheckbox_" + (i + 9))
+            .addEventListener("change", () => {
+              if (
+                document.getElementById("requestCheckbox_" + (i + 9)).checked
+              ) {
+                // 今日の日付を YYYY-MM-DD 形式でセット
+                const today = new Date().toISOString().split("T")[0];
+                document.getElementById("requestDate_" + (i + 9)).value = today;
+              } else {
+                // チェック外したら日付をクリア
+                document.getElementById("requestDate_" + (i + 9)).value = "";
+              }
+            });
         });
 
         body.addEventListener("click", (e) => {
@@ -516,6 +635,22 @@
           }
         });
       })();
+    </script>
+    <script>
+      for (let i = 1; i <= 8; i++) {
+        document
+          .getElementById("requestCheckbox_" + i)
+          .addEventListener("change", () => {
+            if (document.getElementById("requestCheckbox_" + i).checked) {
+              // 今日の日付を YYYY-MM-DD 形式でセット
+              const today = new Date().toISOString().split("T")[0];
+              document.getElementById("requestDate_" + i).value = today;
+            } else {
+              // チェック外したら日付をクリア
+              document.getElementById("requestDate_" + i).value = "";
+            }
+          });
+      }
     </script>
   </body>
 </html>
