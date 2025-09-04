@@ -68,13 +68,6 @@
       <form>
         <div class="card shadow-sm border-0">
           <div class="card-body p-4">
-            <!-- 依頼No. -->
-            <div class="mb-3">
-              <dt>依頼No. <span>1234</span></dt>
-            </div>
-
-            <hr class="my-4" />
-
             <!-- エンティティ -->
             <div class="mb-3">
               <label class="form-label required">エンティティ</label>
@@ -151,16 +144,6 @@
                   id="formerNamesChips"
                 ></div>
               </div>
-              <div class="col-12">
-                <label class="form-label">調査対象者メール</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  name="emails"
-                  placeholder="例：taro@example.com, hanako@example.com"
-                />
-                <div class="chips d-flex flex-wrap mt-2" id="emailsChips"></div>
-              </div>
             </div>
 
             <hr class="my-4" />
@@ -224,28 +207,6 @@
                 rows="4"
                 placeholder="補足事項があれば入力してください"
               ></textarea>
-            </div>
-
-            <!-- 添付ファイル -->
-            <div class="mb-3">
-              <label class="form-label">添付ファイル</label>
-              <div id="dropzone" class="dropzone">
-                <i class="bi bi-upload fs-4"></i>
-                <div class="small">
-                  ここにファイルをドラッグ&ドロップ、または下のボタンから選択
-                </div>
-                <input
-                  class="form-control mt-2"
-                  type="file"
-                  name="attachments"
-                  multiple
-                />
-              </div>
-              <ul
-                class="list-group list-group-flush mt-2"
-                id="fileList"
-                aria-live="polite"
-              ></ul>
             </div>
 
             <!-- 操作ボタン -->
