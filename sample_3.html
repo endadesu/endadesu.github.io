@@ -1,644 +1,920 @@
-<!-- requestDetail.html -->
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>調査依頼 詳細</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
-  <style>
-    .page-title {
-      letter-spacing: 0.04em;
-    }
-
-    .card {
-      border: 0;
-    }
-
-    .section-title {
-      font-weight: 600;
-    }
-
-    .kv {
-      display: grid;
-      grid-template-columns: 12rem 1fr;
-      gap: 0.5rem 1rem;
-    }
-
-    .kv dt {
-      color: var(--bs-secondary-color);
-    }
-
-    .kv dd {
-      margin: 0;
-    }
-
-    .badge-entity {
-      font-weight: 600;
-      background: #eef2f5;
-      color: #6c757d;
-      border: 1px solid #cfd6dc;
-    }
-
-    .badge-entity.FG {
-      background: #e7f1ff;
-      color: #0d6efd;
-      border-color: #b6d2ff;
-    }
-
-    .badge-entity.BK {
-      background: #fef3e6;
-      color: #fd7e14;
-      border-color: #ffd7a8;
-    }
-
-    .badge-entity.OTB {
-      background: #eaf7ef;
-      color: #198754;
-      border-color: #bfe6cd;
-    }
-
-    .badge-entity.SC {
-      background: #f1e8ff;
-      color: #6f42c1;
-      border-color: #d7c6ff;
-    }
-
-    .badge-entity.TB {
-      background: #fff3f4;
-      color: #d63384;
-      border-color: #ffc2cf;
-    }
-
-    .badge-soft {
-      background: var(--bs-secondary-bg);
-      border: 1px solid var(--bs-secondary-border-subtle);
-    }
-
-    .stepper {
-      display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .stepper .step {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--bs-secondary-color);
-    }
-
-    .stepper .step i {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--bs-secondary-border-subtle);
-      background: var(--bs-secondary-bg);
-    }
-
-    .stepper .step.active {
-      color: var(--bs-body-color);
-    }
-
-    .stepper .step.active i {
-      border-color: rgba(var(--bs-primary-rgb), 0.45);
-      background: rgba(var(--bs-primary-rgb), 0.12);
-      color: var(--bs-primary);
-    }
-
-    .table-sm td,
-    .table-sm th {
-      padding: 0.5rem 0.75rem;
-    }
-
-    .muted {
-      color: var(--bs-secondary-color);
-    }
-
-    .timeline {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    .timeline li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin: 0.5rem 0;
-    }
-
-    .timeline li::before {
-      content: "";
-      position: absolute;
-      left: 0.5rem;
-      top: 0.35rem;
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background: var(--bs-primary);
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--bs-border-color);
-      opacity: 0.6;
-      margin: 1rem 0;
-    }
-
-    .btn-icon {
-      width: 2.25rem;
-      height: 2.25rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @media (max-width: 768px) {
-      .kv {
-        grid-template-columns: 8rem 1fr;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>調査依頼 詳細</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      .page-title {
+        letter-spacing: 0.04em;
       }
-    }
-  </style>
-</head>
+      .card {
+        border: 0;
+      }
+      .section-title {
+        font-weight: 600;
+      }
+      .kv {
+        display: grid;
+        grid-template-columns: 12rem 1fr;
+        gap: 0.5rem 1rem;
+      }
+      .kv dt {
+        color: var(--bs-secondary-color);
+      }
+      .kv dd {
+        margin: 0;
+      }
+      .badge-entity {
+        font-weight: 600;
+        background: #eef2f5;
+        color: #6c757d;
+        border: 1px solid #cfd6dc;
+      }
+      .badge-entity.FG {
+        background: #e7f1ff;
+        color: #0d6efd;
+        border-color: #b6d2ff;
+      }
+      .badge-entity.BK {
+        background: #fef3e6;
+        color: #fd7e14;
+        border-color: #ffd7a8;
+      }
+      .badge-entity.OTB {
+        background: #eaf7ef;
+        color: #198754;
+        border-color: #bfe6cd;
+      }
+      .badge-entity.SC {
+        background: #f1e8ff;
+        color: #6f42c1;
+        border-color: #d7c6ff;
+      }
+      .badge-entity.TB {
+        background: #fff3f4;
+        color: #d63384;
+        border-color: #ffc2cf;
+      }
+      .badge-soft {
+        background: var(--bs-secondary-bg);
+        border: 1px solid var(--bs-secondary-border-subtle);
+      }
+      .table-sm td,
+      .table-sm th {
+        padding: 0.5rem 0.75rem;
+      }
+      .muted {
+        color: var(--bs-secondary-color);
+      }
+      .divider {
+        height: 1px;
+        background: var(--bs-border-color);
+        opacity: 0.6;
+        margin: 1rem 0;
+      }
+      .btn-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (max-width: 768px) {
+        .kv {
+          grid-template-columns: 8rem 1fr;
+        }
+      }
+      body.status-closed {
+        background-color: #f7f7f9;
+        background-image: repeating-linear-gradient(
+            -30deg,
+            rgba(0, 0, 0, 0.03) 0 18px,
+            rgba(255, 255, 255, 0.03) 18px 36px
+          ),
+          url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTIwIDEyMCc+PGRlZnM+PHBhdHRlcm4gaWQ9J3AnIHdpZHRoPScxMjAnIGhlaWdodD0nMTIwJyBwYXR0ZXJuVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyBwYXR0ZXJuVHJhbnNmb3JtPSdyb3RhdGUoLTMwKSc+PHRleHQgeD0nMCcgeT0nNzAnIGZvbnQtZmFtaWx5PSdzeXN0ZW0tdWksU2Vnb2UgVUksUm9ib3RvLEFyaWFsJyBmb250LXNpemU9JzIyJyBmaWxsPScjOTk5JyBmaWxsLW9wYWNpdHk9JzAuMTInIGxldHRlci1zcGFjaW5nPScyJz5DTE9TRSE8L3RleHQ+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSd1cmwoI3ApJy8+PC9zdmc+");
+        background-repeat: repeat;
+        background-attachment: local;
+        background-blend-mode: multiply;
+      }
 
-<body class="bg-body-tertiary">
-  <main class="container py-4">
-    <!-- ヘッダーバー -->
-    <div class="d-flex align-items-center justify-content-between mb-3">
-      <div class="d-flex align-items-center">
-        <i class="bi bi-file-earmark-text fs-3 me-2 text-primary"></i>
-        <h1 class="h4 page-title mb-0">調査依頼 詳細</h1>
-      </div>
-      <div class="d-flex gap-2">
-        <a class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> 一覧へ</a>
-      </div>
-    </div>
-
-    <!-- 概要カード -->
-    <div class="card shadow-sm mb-3">
-      <div class="card-body">
-        <div class="row g-3">
-          <div class="col-lg-7">
-            <div class="kv">
-              <dt>依頼No.</dt>
-              <dd class="fw-semibold">1234</dd>
-              <dt>応募者 / 対象者</dt>
-            </div>
-          </div>
+      /* === 備考テキストエリアをカード高にフィットさせる === */
+      .stretch-row {
+        align-items: stretch;
+      } /* 行内のカラムを同じ高さに */
+      .notes-col {
+        display: flex;
+        flex-direction: column;
+      } /* 右カラムを縦並びのフレックスに */
+      .notes-col .form-control {
+        flex: 1 1 auto;
+        min-height: 10rem;
+      } /* 右側のtextareaを伸縮 */
+    </style>
+  </head>
+  <body class="bg-body-tertiary">
+    <main class="container py-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-file-earmark-text fs-3 me-2 text-primary"></i>
+          <h1 class="h4 page-title mb-0">調査依頼 詳細</h1>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-secondary"
+            ><i class="bi bi-arrow-left"></i> 一覧へ</a
+          >
         </div>
       </div>
-    </div>
 
-    <!-- コンテンツ：各工程 -->
-    <form>
-      <div class="row g-3">
-        <!-- 同意書（表示のみ） -->
-        <div class="col-12">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <div class="section-title mb-2">
-                <i class="bi bi-file-check"></i> 同意書
-              </div>
-              <div class="row g-3">
-                <div class="col-12 d-flex align-items-center gap-2">
-                  <label class="form-label mb-0" style="width: 100px;">取得依頼</label>
-                  <div class="form-check form-switch">
-                    <input id="requestCheckbox_1" class="form-check-input" type="checkbox" />
-                  </div>
-                  <input id="requestDate_1" type="date" class="form-control w-auto" style="max-width: 200px;" />
-                </div>
-                <div class="col-12 d-flex align-items-center gap-2">
-                  <label class="form-label mb-0" style="width: 100px;">本人へ依頼中</label>
-                  <div class="form-check form-switch">
-                    <input id="requestCheckbox_2" class="form-check-input" type="checkbox" />
-                  </div>
-                  <input id="requestDate_2" type="date" class="form-control w-auto" style="max-width: 200px;" />
-                </div>
-                <div class="col-12 d-flex align-items-center gap-2">
-                  <label class="form-label mb-0" style="width: 100px;">取得</label>
-                  <div class="form-check form-switch">
-                    <input id="requestCheckbox_3" class="form-check-input" type="checkbox" />
-                  </div>
-                  <input id="requestDate_3" type="date" class="form-control w-auto" style="max-width: 200px;" />
-                </div>
-                <div class="col-12 d-flex align-items-center gap-2">
-                  <label class="form-label mb-0" style="width: 100px;">メールアドレス</label>
-                  <input type="text" class="form-control" style="max-width: 300px;" />
-                </div>
-              </div>
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-lg-7">
+              <dl class="kv">
+                <dt>依頼No.</dt>
+                <dd class="fw-semibold">1001</dd>
+              </dl>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- データチェック（編集可） -->
-        <div class="col-12">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <div class="row g-3">
-                <!-- 左：データチェック -->
-                <div class="col-12 col-lg-6">
+      <form action="#" method="post">
+        <fieldset>
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body">
                   <div class="section-title mb-2">
-                    <i class="bi bi-clipboard-check"></i> データチェック
+                    <i class="bi bi-file-check"></i> 基本情報
                   </div>
                   <div class="row g-3">
-                    <div class="col-6">
-                      <label class="form-label">依頼</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_4" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_4" type="date" class="form-control w-auto" style="max-width:200px;" />
+                    <div class="mb-3">
+                      <label class="form-label">エンティティ</label>
+                      <div class="segmented d-flex flex-wrap">
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_fg"
+                          name="entityCd"
+                          value="01"
+                        />
+                        <label class="btn btn-outline-primary" for="en_fg"
+                          >FG</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_bk"
+                          name="entityCd"
+                          value="02"
+                          checked
+                        />
+                        <label class="btn btn-outline-primary" for="en_bk"
+                          >BK</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_tb"
+                          name="entityCd"
+                          value="03"
+                        />
+                        <label class="btn btn-outline-primary" for="en_tb"
+                          >TB</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_sc"
+                          name="entityCd"
+                          value="04"
+                        />
+                        <label class="btn btn-outline-primary" for="en_sc"
+                          >SC</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_und"
+                          name="entityCd"
+                          value="05"
+                        />
+                        <label class="btn btn-outline-secondary" for="en_und"
+                          >未決</label
+                        >
                       </div>
                     </div>
-                    <div class="col-6">
-                      <label class="form-label">完了</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_5" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_5" type="date" class="form-control w-auto" style="max-width:200px;" />
+
+                    <div class="col-md-6">
+                      <label class="form-label">調査対象者氏名</label>
+                      <input
+                        class="form-control"
+                        placeholder="例：山田太郎"
+                        value="山田太郎"
+                      />
+                      <div
+                        class="chips d-flex flex-wrap mt-2"
+                        id="nameChips"
+                      ></div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">旧姓</label>
+                      <input
+                        class="form-control"
+                        placeholder="複数はカンマ区切り（例：山田, 佐藤）"
+                      />
+                      <div
+                        class="chips d-flex flex-wrap mt-2"
+                        id="formerNamesChips"
+                      ></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label">英語対応</label>
+                      <div class="segmented d-flex">
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_yes"
+                          name="englishNeeded"
+                          value="true"
+                        />
+                        <label class="btn btn-outline-primary" for="en_yes"
+                          >要</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="en_no"
+                          name="englishNeeded"
+                          value="false"
+                          checked
+                        />
+                        <label class="btn btn-outline-primary" for="en_no"
+                          >否</label
+                        >
                       </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label">納期</label>
+                      <div class="segmented d-flex">
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="pr_01"
+                          name="priorityCd"
+                          value="01"
+                          checked
+                        />
+                        <label class="btn btn-outline-primary" for="pr_01"
+                          ><i class="bi bi-clock"></i> 通常</label
+                        >
+                        <input
+                          class="btn-check"
+                          type="radio"
+                          id="pr_02"
+                          name="priorityCd"
+                          value="02"
+                        />
+                        <label class="btn btn-outline-danger" for="pr_02"
+                          ><i class="bi bi-lightning-charge"></i> 至急</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label">備考</label>
+                      <textarea
+                        class="form-control"
+                        rows="4"
+                        placeholder="補足事項があれば入力してください"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
-
-                <!-- 右：備考 -->
-                <div class="col-12 col-lg-6">
-                  <div class="section-title mb-2">備考</div>
-                  <textarea class="form-control" rows="5"></textarea>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-
-
-        <!-- バックグラウンドチェック（編集可） -->
-        <div class="col-12">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <div class="row g-3">
-                <!-- 左：バックグラウンドチェック -->
-                <div class="col-12 col-lg-6">
+            <!-- 同意書 -->
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body">
                   <div class="section-title mb-2">
-                    <i class="bi bi-search"></i> バックグラウンドチェック
+                    <i class="bi bi-file-check"></i> 同意書
                   </div>
                   <div class="row g-3">
-                    <div class="col-12 col-md-4">
-                      <label class="form-label">依頼</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_6" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_6" type="date" class="form-control w-auto" style="max-width:200px;" />
+                    <div class="col-12 d-flex align-items-center gap-2">
+                      <label class="form-label mb-0" style="width: 100px"
+                        >取得依頼</label
+                      >
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input date-toggle"
+                          type="checkbox"
+                        />
                       </div>
+                      <input
+                        type="date"
+                        class="form-control w-auto"
+                        style="max-width: 200px"
+                      />
                     </div>
-                    <div class="col-12 col-md-4">
-                      <label class="form-label">調査開始</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_7" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_7" type="date" class="form-control w-auto" style="max-width:200px;" />
+                    <div class="col-12 d-flex align-items-center gap-2">
+                      <label class="form-label mb-0" style="width: 100px"
+                        >本人へ依頼中</label
+                      >
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input date-toggle"
+                          type="checkbox"
+                        />
                       </div>
+                      <input
+                        type="date"
+                        class="form-control w-auto"
+                        style="max-width: 200px"
+                      />
                     </div>
-                    <div class="col-12 col-md-4">
-                      <label class="form-label">完了</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_8" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_8" type="date" class="form-control w-auto" style="max-width:200px;" />
+                    <div class="col-12 d-flex align-items-center gap-2">
+                      <label class="form-label mb-0" style="width: 100px"
+                        >取得</label
+                      >
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input date-toggle"
+                          type="checkbox"
+                        />
                       </div>
+                      <input
+                        type="date"
+                        class="form-control w-auto"
+                        style="max-width: 200px"
+                      />
                     </div>
-                  </div>
-                </div>
-
-                <!-- 右：備考 -->
-                <div class="col-12 col-lg-6">
-                  <div class="section-title mb-2">備考</div>
-                  <textarea class="form-control" rows="5"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- 現職の詳細確認（編集可） -->
-        <div class="col-12">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <div class="row g-3">
-                <!-- 左：現職の詳細確認 -->
-                <div class="col-12 col-lg-6">
-                  <div class="section-title mb-2">
-                    <i class="bi bi-clipboard-check"></i> 現職の詳細確認
-                  </div>
-                  <div class="row g-3">
-                    <div class="col-6">
-                      <label class="form-label">ご本人了承</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_9" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_9" type="date" class="form-control w-auto" style="max-width:200px;" />
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">完了</label>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="form-check form-switch">
-                          <input id="requestCheckbox_10" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_10" type="date" class="form-control w-auto" style="max-width:200px;" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 右：備考 -->
-                <div class="col-12 col-lg-6">
-                  <div class="section-title mb-2">備考</div>
-                  <textarea class="form-control" rows="5"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- リファレンスインタビュー（編集可：行追加/削除） -->
-        <div class="col-12">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-between mb-2">
-                <div class="section-title">
-                  <i class="bi bi-people"></i> リファレンスインタビュー
-                </div>
-                <div>
-                  <!-- 依頼済み（オプションのヘッダ側スイッチの見た目デモ） -->
-                  <div class="d-inline-flex align-items-center gap-4">
-                    <div>
-                      <label class="form-label mb-1">依頼済み</label>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="form-check form-switch mb-0">
-                          <input id="requestCheckbox_11" class="form-check-input" type="checkbox" />
-                        </div>
-                        <input id="requestDate_11" type="date" class="form-control w-auto" style="max-width:200px;" />
-                      </div>
+                    <div class="col-12 d-flex align-items-center gap-2">
+                      <label class="form-label mb-0" style="width: 100px"
+                        >メールアドレス</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        style="max-width: 300px"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="table-responsive">
-                <table class="table table-sm align-middle">
-                  <thead class="text-secondary">
-                    <tr>
-                      <th style="width: 6rem">No</th>
-                      <th style="width: 12rem">回答者</th>
-                      <th style="width: 9rem">日付</th>
-                      <th style="width: 10rem">完了/日付</th>
-                      <th style="width: 18rem">企業名</th>
-                      <th style="width: 6rem">人数</th>
-                      <th style="width: 21rem">備考</th>
-                      <th style="width: 3rem"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="refBody">
-                    <!-- 初期0件（ここにJSで行が追加されます） -->
-                  </tbody>
-                </table>
-              </div>
-
-              <button type="button" class="btn btn-outline-primary" id="addRef">
-                <i class="bi bi-plus-lg"></i> 追加
-              </button>
             </div>
-          </div>
-        </div>
 
-        <!-- 追加行テンプレート（純HTML） -->
-        <template id="refRowTemplate">
-          <tr data-index="__index__">
-            <td class="no">__no__</td>
-            <td>
-              <input type="text" class="form-control" name="references[__index__].name">
-            </td>
-            <td>
-              <input type="date" class="form-control" name="references[__index__].date">
-            </td>
-            <td>
-              <div class="d-flex align-items-center gap-2">
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="ref_done___index__"
-                    name="references[__index__].done">
-                </div>
-                <input type="date" class="form-control w-auto" style="max-width:200px;" id="ref_doneAt___index__"
-                  name="references[__index__].doneAt">
-              </div>
-            </td>
-            <td>
-              <input type="text" class="form-control" name="references[__index__].company">
-            </td>
-            <td>
-              <input type="number" class="form-control" name="references[__index__].count" min="0">
-            </td>
-            <td>
-              <input type="text" class="form-control" name="references[__index__].remark">
-            </td>
-            <td class="text-end">
-              <button type="button" class="btn btn-outline-danger btn-sm remove-ref" title="削除">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-        </template>
-
-        <!-- 個別連絡 / 依頼辞退（編集可） -->
-        <div class="col-12 col-lg-6">
-          <div class="card shadow-sm mb-3">
-            <div class="card-body">
-              <div class="section-title mb-2">
-                <i class="bi bi-chat-left-text"></i> 個別連絡
-              </div>
-              <div class="row g-3">
-                <div class="col-md-12">
-                  <label class="form-label">メモ</label>
-                  <input type="text" class="form-control" />
+            <!-- データチェック -->
+            <div class="col-12">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <div class="row g-3 stretch-row">
+                    <div class="col-12 col-lg-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="section-title mb-0">
+                          <i class="bi bi-clipboard-check"></i> データチェック
+                        </div>
+                        <select class="form-select form-select-sm w-auto">
+                          <option value="">―</option>
+                          <option value="maru">○</option>
+                          <option value="sankaku">△</option>
+                          <option value="batsu">×</option>
+                          <option value="hoshi">☆</option>
+                        </select>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <label class="form-label">依頼</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <label class="form-label">完了</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-9 notes-col">
+                      <div class="section-title mb-2">備考</div>
+                      <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="card shadow-sm mb-3">
-            <div class="card-body">
-              <div class="section-title mb-2">
-                <i class="bi bi-clipboard-check"></i> タスク完了
+            <!-- バックグラウンドチェック -->
+            <div class="col-12">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <div class="row g-3 stretch-row">
+                    <div class="col-12 col-lg-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="section-title mb-0">
+                          <i class="bi bi-clipboard-check"></i>
+                          バックグラウンドチェック
+                        </div>
+                        <select class="form-select form-select-sm w-auto">
+                          <option value="">―</option>
+                          <option value="maru">○</option>
+                          <option value="sankaku">△</option>
+                          <option value="batsu">×</option>
+                          <option value="hoshi">☆</option>
+                        </select>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                          <label class="form-label">依頼</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                          <label class="form-label">調査開始</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                          <label class="form-label">完了</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-9 notes-col">
+                      <div class="section-title mb-2">備考</div>
+                      <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="row g-3">
-                <div class="col-12 col-md-4">
-                  <label class="form-label">完了</label>
+            </div>
+
+            <!-- 現職の詳細確認 -->
+            <div class="col-12">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <div class="row g-3 stretch-row">
+                    <div class="col-12 col-lg-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <div class="section-title mb-0">
+                          <i class="bi bi-clipboard-check"></i> 現職の詳細確認
+                        </div>
+                        <select class="form-select form-select-sm w-auto">
+                          <option value="">―</option>
+                          <option value="maru">○</option>
+                          <option value="sankaku">△</option>
+                          <option value="batsu">×</option>
+                          <option value="hoshi">☆</option>
+                        </select>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <label class="form-label">ご本人了承</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row g-3">
+                        <div class="col-6">
+                          <label class="form-label">完了</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch">
+                              <input
+                                class="form-check-input date-toggle"
+                                type="checkbox"
+                              />
+                            </div>
+                            <input
+                              type="date"
+                              class="form-control w-auto"
+                              style="max-width: 200px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-9 notes-col">
+                      <div class="section-title mb-2">備考</div>
+                      <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- リファレンスインタビュー -->
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-2"
+                  >
+                    <div class="section-title">
+                      <i class="bi bi-people"></i> リファレンスインタビュー
+                    </div>
+                    <div class="d-inline-flex align-items-center gap-4">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <label class="form-label mb-1">依頼済み</label>
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="form-check form-switch mb-0">
+                            <input
+                              class="form-check-input date-toggle"
+                              type="checkbox"
+                            />
+                          </div>
+                          <input
+                            type="date"
+                            class="form-control w-auto"
+                            style="max-width: 200px"
+                          />
+                        </div>
+                        <select class="form-select form-select-sm w-auto">
+                          <option value="">―</option>
+                          <option value="maru">○</option>
+                          <option value="sankaku">△</option>
+                          <option value="batsu">×</option>
+                          <option value="hoshi">☆</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-sm align-middle">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th style="width: 6rem">No</th>
+                          <th style="width: 12rem">回答者</th>
+                          <th style="width: 9rem">日付</th>
+                          <th style="width: 10rem">完了/日付</th>
+                          <th style="width: 18rem">企業名</th>
+                          <th style="width: 6rem">人数</th>
+                          <th style="width: 21rem">備考</th>
+                          <th style="width: 3rem"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="refBody"></tbody>
+                    </table>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="addRef"
+                  >
+                    <i class="bi bi-plus-lg"></i> 追加
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <template id="refRowTemplate">
+              <tr data-index="__index__">
+                <td class="no">__no__</td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="references[__index__].name"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="date"
+                    class="skip form-control"
+                    name="references[__index__].startedDate"
+                  />
+                </td>
+                <td>
                   <div class="d-flex align-items-center gap-2">
                     <div class="form-check form-switch">
-                      <input id="requestCheckbox_12" class="form-check-input" type="checkbox" />
+                      <input
+                        class="form-check-input date-toggle"
+                        type="checkbox"
+                        id="ref_done___index__"
+                        name="references[__index__].done"
+                      />
                     </div>
-                    <input id="requestDate_12" type="date" class="form-control w-auto" style="max-width:200px;" />
+                    <input
+                      type="date"
+                      class="form-control w-auto"
+                      style="max-width: 200px"
+                      id="ref_doneAt___index__"
+                      name="references[__index__].completedDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="references[__index__].companyName"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="references[__index__].employeeCount"
+                    min="0"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="references[__index__].remarks"
+                  />
+                </td>
+                <td class="text-end">
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm remove-ref"
+                    title="削除"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </template>
+
+            <div class="col-12 col-lg-6">
+              <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                  <div class="section-title mb-2">
+                    <i class="bi bi-chat-left-text"></i> 個別連絡
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md-12">
+                      <label class="form-label">メモ</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                  <div class="section-title mb-2">
+                    <i class="bi bi-clipboard-check"></i> タスク完了
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">完了</label>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input date-toggle"
+                            type="checkbox"
+                          />
+                        </div>
+                        <input
+                          type="date"
+                          class="form-control w-auto"
+                          style="max-width: 200px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="section-title mb-2">
+                    <i class="bi bi-slash-circle"></i> 依頼辞退
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">状況</label>
+                      <select
+                        class="form-select"
+                        id="declinedStatusCd"
+                        name="declinedStatusCd"
+                      >
+                        <option value="01" selected="selected">―</option>
+                        <option value="02">保留</option>
+                        <option value="03">中止</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">日付</label>
+                      <input type="date" class="form-control" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">理由</label>
+                      <textarea class="form-control" rows="2"></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <div class="section-title mb-2">
-                <i class="bi bi-slash-circle"></i> 依頼辞退
-              </div>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label">状況</label>
-                  <select class="form-select">
-                    <option value="">―</option>
-                    <option>保留</option>
-                    <option>中止</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">日付</label>
-                  <input type="date" class="form-control" />
-                </div>
-                <div class="col-12">
-                  <label class="form-label">理由</label>
-                  <textarea class="form-control" rows="2"></textarea>
-                </div>
-              </div>
+          <div class="d-flex justify-content-between mt-3">
+            <a class="btn btn-outline-secondary"
+              ><i class="bi bi-arrow-left"></i> 一覧へ戻る</a
+            >
+            <div class="d-flex gap-2">
+              <button type="reset" class="btn btn-outline-secondary">
+                リセット
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save"></i> 保存
+              </button>
             </div>
           </div>
-        </div>
-
-        <!-- 右下：添付/履歴（表示のみ）→そのまま -->
-        <!-- ・・・必要なら前回の表示カードを残してください・・・ -->
-      </div>
-
-      <!-- フッタ操作（保存） -->
-      <div class="d-flex justify-content-between mt-3">
-        <a class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> 一覧へ戻る</a>
-        <div class="d-flex gap-2">
-          <button type="reset" class="btn btn-outline-secondary">
-            リセット
-          </button>
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-save"></i> 保存
-          </button>
-        </div>
-      </div>
-    </form>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    (function () {
-      const MAX_ROWS = 3;
-      const tbody = document.getElementById('refBody');
-      const addBtn = document.getElementById('addRef');
-      const tpl = document.getElementById('refRowTemplate');
-
-      if (!tbody || !addBtn || !tpl) return;
-
-      // チェックONで本日日付、OFFでクリア
-      function bindCheckboxAutoDate(tr) {
-        const done = tr.querySelector('input[type="checkbox"][name^="references"][name$=".done"]');
-        const doneAt = tr.querySelector('input[type="date"][name^="references"][name$=".doneAt"]');
-        if (!done || !doneAt) return;
-
-        done.addEventListener('change', () => {
-          if (done.checked) {
-            const today = new Date().toISOString().split('T')[0];
-            doneAt.value = today;
-          } else {
-            doneAt.value = '';
-          }
-        });
-      }
-
-      // No振り直し & name/idのindex更新 & 追加ボタン制御
-      function renumber() {
-        const rows = [...tbody.querySelectorAll('tr')];
-        rows.forEach((tr, idx) => {
-          tr.dataset.index = idx;
-          const noCell = tr.querySelector('.no');
-          if (noCell) noCell.textContent = idx + 1;
-
-          tr.querySelectorAll('[name]').forEach(el => {
-            el.name = el.name.replace(/references\[\d+]/, `references[${idx}]`);
+        </fieldset>
+      </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      (function () {
+        const MAX_ROWS = 6;
+        const tbody = document.getElementById("refBody");
+        const addBtn = document.getElementById("addRef");
+        const tpl = document.getElementById("refRowTemplate");
+        if (!tbody || !addBtn || !tpl) return;
+        function renumber() {
+          const rows = [...tbody.querySelectorAll("tr")];
+          rows.forEach((tr, idx) => {
+            tr.dataset.index = idx;
+            const noCell = tr.querySelector(".no");
+            if (noCell) noCell.textContent = idx + 1;
+            tr.querySelectorAll("[name]").forEach((el) => {
+              el.name = el.name.replace(
+                /references\[\d+]/,
+                `references[${idx}]`
+              );
+            });
+            tr.querySelectorAll("[id]").forEach((el) => {
+              el.id = el.id
+                .replace(/ref_doneAt_\d+/, `ref_doneAt_${idx}`)
+                .replace(/ref_done_\d+/, `ref_done_${idx}`);
+            });
           });
-          tr.querySelectorAll('[id]').forEach(el => {
-            el.id = el.id
-              .replace(/ref_doneAt_\d+/, `ref_doneAt_${idx}`)
-              .replace(/ref_done_\d+/, `ref_done_${idx}`);
-          });
+          addBtn.disabled = rows.length >= MAX_ROWS;
+        }
+        function addRow() {
+          const count = tbody.querySelectorAll("tr").length;
+          if (count >= MAX_ROWS) return;
+          const html = tpl.innerHTML
+            .replaceAll("__index__", count)
+            .replaceAll("__no__", count + 1);
+          const wrap = document.createElement("tbody");
+          wrap.innerHTML = html.trim();
+          const tr = wrap.firstElementChild;
+          tbody.appendChild(tr);
+          renumber();
+        }
+        addBtn.addEventListener("click", addRow);
+        tbody.addEventListener("click", (e) => {
+          const btn = e.target.closest(".remove-ref");
+          if (!btn) return;
+          const tr = btn.closest("tr");
+          tr?.remove();
+          renumber();
         });
-        addBtn.disabled = rows.length >= MAX_ROWS;
-      }
-
-      function addRow() {
-        const count = tbody.querySelectorAll('tr').length;
-        if (count >= MAX_ROWS) return;
-
-        const html = tpl.innerHTML
-          .replaceAll('__index__', count)
-          .replaceAll('__no__', count + 1);
-
-        const wrap = document.createElement('tbody');
-        wrap.innerHTML = html.trim();
-        const tr = wrap.firstElementChild;
-
-        tbody.appendChild(tr);
-        bindCheckboxAutoDate(tr);
+        // 初期は行0
         renumber();
+      })();
+    </script>
+    <script>
+      // チェックボックス <-> 日付 の同期（見た目用）
+      function resolveDateInput(cb) {
+        let p = cb.parentElement;
+        for (let i = 0; i < 4 && p; i++, p = p.parentElement) {
+          const candidate = p.querySelector('input[type="date"]');
+          if (candidate) return candidate;
+        }
+        return null;
       }
-
-      // 初期（0件）状態セット
-      renumber();
-
-      // 追加
-      addBtn.addEventListener('click', addRow);
-
-      // 削除
-      tbody.addEventListener('click', (e) => {
-        const btn = e.target.closest('.remove-ref');
-        if (!btn) return;
-        const tr = btn.closest('tr');
-        tr?.remove();
-        renumber();
+      function resolvePeerCheckbox(dateInput) {
+        let p = dateInput.parentElement;
+        for (let i = 0; i < 4 && p; i++, p = p.parentElement) {
+          const cb = p.querySelector(".date-toggle");
+          if (cb) return cb;
+        }
+        return null;
+      }
+      document.addEventListener("change", (e) => {
+        const cb = e.target.closest(".date-toggle");
+        if (!cb) return;
+        const dateInput = resolveDateInput(cb);
+        if (!dateInput) return;
+        if (cb.checked) {
+          const today = new Date().toISOString().slice(0, 10);
+          if (!dateInput.value) dateInput.value = today;
+        } else {
+          dateInput.value = "";
+        }
       });
-    })();
-  </script>
-  <script>
-    for (let i = 1; i <= 12; i++) {
-      document
-        .getElementById("requestCheckbox_" + i)
-        .addEventListener("change", () => {
-          if (document.getElementById("requestCheckbox_" + i).checked) {
-            // 今日の日付を YYYY-MM-DD 形式でセット
-            const today = new Date().toISOString().split("T")[0];
-            document.getElementById("requestDate_" + i).value = today;
-          } else {
-            // チェック外したら日付をクリア
-            document.getElementById("requestDate_" + i).value = "";
-          }
+      function onDateChanged(ev) {
+        const dateInput = ev.target;
+        if (
+          !(dateInput instanceof HTMLInputElement) ||
+          dateInput.type !== "date" ||
+          dateInput.classList.contains("skip")
+        )
+          return;
+        const cb = resolvePeerCheckbox(dateInput);
+        if (!cb) return;
+        cb.checked = !!dateInput.value;
+      }
+      document.addEventListener("input", onDateChanged);
+      document.addEventListener("change", onDateChanged);
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".date-toggle").forEach((cb) => {
+          const dateInput = resolveDateInput(cb);
+          if (!dateInput) return;
+          cb.checked = !!dateInput.value;
         });
-    }
-  </script>
-</body>
-
+      });
+    </script>
+  </body>
 </html>
